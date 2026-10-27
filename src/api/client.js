@@ -8,7 +8,7 @@ let API_BASE = DEFAULT_API_BASE;
 
 const client = axios.create({
     baseURL: DEFAULT_API_BASE,
-    timeout: 15000,
+    timeout: 60000,
     headers: {
         'Content-Type': 'application/json',
     },
