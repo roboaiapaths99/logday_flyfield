@@ -84,6 +84,12 @@
     ],
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c6ad8bdc-bd3f-4384-9b1c-d31ad5b717b1"
+      }
+    },
+    "owner": "roboaiapaths"
   }
 }
