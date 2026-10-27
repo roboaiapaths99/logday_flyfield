@@ -88,8 +88,7 @@ export default function ActiveVisitScreen({ route, navigation }) {
         try {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             const photo = await cameraRef.current.takePictureAsync({
-                quality: 0.6,
-                skipProcessing: true,
+                quality: 0.7,
             });
             setCapturedPhotos((prev) => [...prev, photo.uri]);
             setShowCameraModal(false);

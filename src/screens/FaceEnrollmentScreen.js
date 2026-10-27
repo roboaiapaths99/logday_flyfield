@@ -47,8 +47,7 @@ export default function FaceEnrollmentScreen({ navigation, route }) {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
             const photo = await cameraRef.current.takePictureAsync({
-                quality: 0.8,
-                skipProcessing: true
+                quality: 0.7,
             });
 
             // Crop/Resize to optimal 500px JPEG for face recognition matching

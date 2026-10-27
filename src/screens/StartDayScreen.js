@@ -46,11 +46,13 @@ export default function StartDayScreen({ navigation }) {
         try {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             const photo = await cameraRef.current.takePictureAsync({
-                quality: 0.6,
-                skipProcessing: true
+                quality: 0.7,
             });
-            setPhotoUri(photo.uri);
+            if (photo && photo.uri) {
+                setPhotoUri(photo.uri);
+            }
         } catch (e) {
+            console.warn('Camera capture error:', e);
             Alert.alert('Camera Error', 'Could not capture photo. Please try again.');
         }
     };
@@ -197,8 +199,28 @@ export default function StartDayScreen({ navigation }) {
 
             {/* Camera / Photo Preview View */}
             <View style={styles.cameraWrapper}>
+                <CameraView
+                    ref={cameraRef}
+                    style={styles.camera}
+                    facing="front"
+                >
+                    {/* Face Guide Overlay (shown only before photo capture) */}
+                    {!photoUri && (
+                        <View style={styles.faceGuideOverlay}>
+                            <View style={styles.faceOvalFrame}>
+                                <View style={styles.guideCornerTL} />
+                                <View style={styles.guideCornerTR} />
+                                <View style={styles.guideCornerBL} />
+                                <View style={styles.guideCornerBR} />
+                            </View>
+                            <Text style={styles.faceGuideText}>Align Face in Frame</Text>
+                        </View>
+                    )}
+                </CameraView>
+
+                {/* Captured Photo Overlay (renders on top of camera without unmounting camera surface) */}
                 {photoUri ? (
-                    <View style={styles.previewContainer}>
+                    <View style={StyleSheet.absoluteFillObject}>
                         <Image source={{ uri: photoUri }} style={styles.previewImage} resizeMode="cover" />
                         <View style={styles.verifiedBadge}>
                             <CheckCircle2 size={14} color="#10B981" />
@@ -210,23 +232,7 @@ export default function StartDayScreen({ navigation }) {
                         </TouchableOpacity>
                     </View>
                 ) : (
-                    <View style={styles.cameraContainer}>
-                        <CameraView
-                            ref={cameraRef}
-                            style={styles.camera}
-                            facing="front"
-                        >
-                            {/* Biometric Oval Face Guide Overlay */}
-                            <View style={styles.faceGuideOverlay}>
-                                <View style={styles.faceOvalFrame}>
-                                    <View style={styles.guideCornerTL} />
-                                    <View style={styles.guideCornerTR} />
-                                    <View style={styles.guideCornerBL} />
-                                    <View style={styles.guideCornerBR} />
-                                </View>
-                                <Text style={styles.faceGuideText}>Align Face in Frame</Text>
-                            </View>
-                        </CameraView>
+                    <>
                         {/* Live Feed Header Chip */}
                         <View style={styles.liveFeedChip}>
                             <View style={styles.livePulseDot} />
@@ -244,7 +250,7 @@ export default function StartDayScreen({ navigation }) {
                             </TouchableOpacity>
                             <Text style={styles.guideText}>Tap shutter to capture</Text>
                         </View>
-                    </View>
+                    </>
                 )}
             </View>
 
