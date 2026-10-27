@@ -1,4 +1,5 @@
 import * as Location from 'expo-location';
+import { API_BASE } from '../api/client';
 
 /**
  * Automatically reverse-geocodes GPS coordinates into a clean, human-readable real-world street address.
@@ -42,7 +43,7 @@ export async function getRealAddressFromCoords(latitude, longitude) {
 
     // Fallback: Query backend reverse geocode proxy
     try {
-        const response = await fetch(`https://logday-api.duckdns.org/api/geocoding/reverse?lat=${latitude}&lon=${longitude}`);
+        const response = await fetch(`${API_BASE}/api/geocoding/reverse?lat=${latitude}&lon=${longitude}`);
         if (response.ok) {
             const data = await response.json();
             if (data.display_name) {
