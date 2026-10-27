@@ -74,18 +74,28 @@ export default function FaceEnrollmentScreen({ navigation, route }) {
             }
 
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
+            const handleProceed = () => {
+                if (route?.params?.fromStartDay) {
+                    navigation.replace('StartDay');
+                } else if (isInitial) {
+                    navigation.replace('Dashboard');
+                } else {
+                    navigation.goBack();
+                }
+            };
             
             if (isInitial) {
                 Alert.alert(
                     'Setup Complete',
                     'Your face profile has been registered. You are now ready to start your shift.',
-                    [{ text: 'Continue to Dashboard' }]
+                    [{ text: 'Continue to Dashboard', onPress: handleProceed }]
                 );
             } else {
                 Alert.alert(
                     'Face Registration Updated',
                     'Your face profile has been updated successfully.',
-                    [{ text: 'OK', onPress: () => navigation.goBack() }]
+                    [{ text: 'OK', onPress: handleProceed }]
                 );
             }
         } catch (err) {

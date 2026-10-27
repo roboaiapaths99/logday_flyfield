@@ -34,34 +34,31 @@ export default function AppNavigator() {
 
     return (
         <Stack.Navigator
+            initialRouteName={user?.needs_face_enrollment ? 'FaceEnrollment' : 'Dashboard'}
             screenOptions={{
                 headerShown: false,
                 cardStyle: { backgroundColor: '#F8FAFC' },
             }}
         >
             {user ? (
-                user.needs_face_enrollment ? (
+                <>
+                    <Stack.Screen name="Dashboard" component={DashboardScreen} />
                     <Stack.Screen
                         name="FaceEnrollment"
                         component={FaceEnrollmentScreen}
-                        initialParams={{ initialEnrollment: true }}
+                        initialParams={{ initialEnrollment: user.needs_face_enrollment }}
                     />
-                ) : (
-                    <>
-                        <Stack.Screen name="Dashboard" component={DashboardScreen} />
-                        <Stack.Screen name="StartDay" component={StartDayScreen} />
-                        <Stack.Screen name="StartVisit" component={StartVisitScreen} />
-                        <Stack.Screen name="ActiveVisit" component={ActiveVisitScreen} />
-                        <Stack.Screen name="Timeline" component={TimelineScreen} />
-                        <Stack.Screen name="Expenses" component={ExpensesScreen} />
-                        <Stack.Screen name="LeaveRequest" component={LeaveScreen} />
-                        <Stack.Screen name="HRMSPayslips" component={PayslipsScreen} />
-                        <Stack.Screen name="Profile" component={ProfileScreen} />
-                        <Stack.Screen name="HRMSOnboarding" component={HRMSOnboardingScreen} />
-                        <Stack.Screen name="HRMSExitClearance" component={HRMSExitClearanceScreen} />
-                        <Stack.Screen name="FaceEnrollment" component={FaceEnrollmentScreen} />
-                    </>
-                )
+                    <Stack.Screen name="StartDay" component={StartDayScreen} />
+                    <Stack.Screen name="StartVisit" component={StartVisitScreen} />
+                    <Stack.Screen name="ActiveVisit" component={ActiveVisitScreen} />
+                    <Stack.Screen name="Timeline" component={TimelineScreen} />
+                    <Stack.Screen name="Expenses" component={ExpensesScreen} />
+                    <Stack.Screen name="LeaveRequest" component={LeaveScreen} />
+                    <Stack.Screen name="HRMSPayslips" component={PayslipsScreen} />
+                    <Stack.Screen name="Profile" component={ProfileScreen} />
+                    <Stack.Screen name="HRMSOnboarding" component={HRMSOnboardingScreen} />
+                    <Stack.Screen name="HRMSExitClearance" component={HRMSExitClearanceScreen} />
+                </>
             ) : !organization ? (
                 <Stack.Screen name="OrganizationSelection" component={OrganizationSelectionScreen} />
             ) : (
