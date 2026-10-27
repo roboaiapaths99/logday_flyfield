@@ -1,0 +1,20 @@
+node_modules/
+.expo/
+dist/
+web-build/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Environment files
+.env
+.env*.local
+.env.local
+
+# Native generated folders if prebuilding
+# android/
+# ios/
+
+# OS files
+.DS_Store
+Thumbs.db

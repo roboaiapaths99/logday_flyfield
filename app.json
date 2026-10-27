@@ -1,0 +1,89 @@
+{
+  "expo": {
+    "name": "LogDay FlyField",
+    "slug": "logday-flyfield",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.logday.flyfield",
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "LogDay FlyField requires background location to record travel distance and client visits during work hours.",
+        "NSLocationWhenInUseUsageDescription": "LogDay FlyField requires location access to record client site visits and attendance.",
+        "NSCameraUsageDescription": "LogDay FlyField requires camera access for attendance selfies and client visit documentation.",
+        "NSMicrophoneUsageDescription": "LogDay FlyField requires microphone access to record voice notes during client visits."
+      }
+    },
+    "android": {
+      "package": "com.logday.flyfield",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#004B87"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow LogDay FlyField to use your camera for attendance and client visit photos."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow LogDay FlyField to track your location in the background for travel distance calculation and attendance.",
+          "locationAlwaysPermission": "Allow LogDay FlyField to track your location in the background.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ],
+      "expo-secure-store",
+      "expo-asset",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ],
+      "expo-font",
+      "@react-native-community/datetimepicker",
+      "expo-sharing",
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
