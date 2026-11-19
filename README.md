@@ -95,3 +95,11 @@ Package Details:
 - **Package Name**: `com.logday.flyfield`
 - **Version**: `1.0.0`
 - **Version Code**: `1`
+
+---
+
+## 🔒 Privacy Policy
+
+The official Privacy Policy for LogDay FlyField is publicly available at:
+**[LogDay FlyField Privacy Policy](https://sites.google.com/view/privacy-policy-logdayfield/home?pli=1&authuser=0)**
+
